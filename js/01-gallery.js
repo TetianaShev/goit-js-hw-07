@@ -30,9 +30,13 @@ function createGalleryItems(galleryItems){
 function onGalleryContainerlick(evt) {
   evt.preventDefault();
   console.log(evt.target);
-  const imgBig = evt.target.classList.contains(`gallery__image`);
-  if (!imgBig) {
-    return;
+  // const imgBig = evt.target.classList.contains(`gallery__image`);
+  // if (!imgBig) {
+  //   return;
+  // }
+
+  if (evt.target.nodeName !== "IMG") {
+    return
   }
   const imgValue = evt.target;
   let perentImage = imgValue.closest(`.gallery__image`);
