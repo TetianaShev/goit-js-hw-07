@@ -36,7 +36,7 @@ function onGalleryContainerlick(evt) {
   // }
 
   if (evt.target.nodeName !== "IMG") {
-    return
+    return;
   }
   const imgValue = evt.target;
   let perentImage = imgValue.closest(`.gallery__image`);
