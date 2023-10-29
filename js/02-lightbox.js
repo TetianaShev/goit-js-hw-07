@@ -1,35 +1,52 @@
 import { galleryItems } from './gallery-items.js';
-// Change code below this line
 
-console.log(galleryItems);
+const galleryContainer = document.querySelector('.gallery');
+// const itemsMarkup = createGalleryItemsMarkup(galleryItems);
+// galleryContainer.insertAdjacentHTML('beforeend', itemsMarkup);
 
-console.log(createGalleryItems);
+// // rendered items
+// function createGalleryItemsMarkup(items) {
+//   return items.map(({ preview, original, description }) => {
+//     return `<li>
+//   <a class="gallery__item" href="${original}">
+//     <img
+//       class="gallery__image"
+//       src="${preview}"
+//       alt="${description}"
+//     />
+//   </a>
+// </li>`
+//   }).join('');
+// }
 
-const galleryContainer = document.querySelector(`.gallery`);
-const cardsMarkup = createGalleryItems(galleryItems);
+// /*
+// var lightbox = new SimpleLightbox('.gallery a', {
+//     captionsData: 'alt', captionPosition: 'bottom', captionDelay: 250
+// });
+// */
+// const lightbox = new SimpleLightbox('.gallery a', {
+//   captionsData: 'alt', captionPosition: 'bottom', captionDelay: 250
+// });
 
-galleryContainer.insertAdjacentHTML(`beforeend`, cardsMarkup);
+// ------- 2nd variant --------------------------------------------------------------------------------
+const markup = galleryItems.reduce(
+  (acc, { original, preview, description }) =>
+    (acc += `<li>
+  <a class="gallery__item" href="${original}">
+    <img
+      class="gallery__image"
+      src="${preview}"
+      alt="${description}"
+    />
+  </a>
+</li>`),
+  ''
+);
 
+galleryContainer.insertAdjacentHTML('beforeend', markup);
 
-console.log(galleryItems);
-function createGalleryItems(galleryItems){
-  return galleryItems.map(({ preview, original, description }) => {
-    return  `
-    <div class="gallery__item">
-        <a class="gallery__item" href="${original}">
-             <img
-             class="gallery__image" src="${preview}"
-             alt="${description}"
-             />
-        </a>
-    </div> `;
-    })
-    .join(``);
-}
-
-const gallery = new SimpleLightbox('.gallery a', { 
-    captionsData: `alt`, captionPosition: 'bottom', captionDelay: `250ms`,
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
 });
-gallery.on(`show.simplelightbox`, function () {
-     
-});
+
